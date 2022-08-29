@@ -11,7 +11,7 @@ require (
 	github.com/jackc/pgx/v4 v4.17.1
 	github.com/joho/godotenv v1.4.0
 	github.com/prometheus/client_golang v1.13.0
-	github.com/rs/zerolog v1.27.0
+	github.com/rs/zerolog v1.28.0
 	github.com/streadway/amqp v1.0.0
 	github.com/swaggo/files v0.0.0-20220728132757-551d4a08d97a
 	github.com/swaggo/gin-swagger v1.5.2
