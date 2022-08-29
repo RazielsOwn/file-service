@@ -1,0 +1,82 @@
+definitions:
+  entity.FileEntity:
+    properties:
+      description:
+        example: some text here
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      path:
+        type: string
+    type: object
+  v1.fileResponse:
+    properties:
+      file:
+        $ref: '#/definitions/entity.FileEntity'
+    type: object
+  v1.response:
+    properties:
+      error:
+        example: message
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /v1/fileService/getFile:
+    get:
+      consumes:
+      - application/json
+      description: get file by id
+      operationId: getFile
+      parameters:
+      - description: File ID
+        in: query
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/v1.fileResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.response'
+      summary: get file
+      tags:
+      - fileService
+  /v1/fileService/uploadFile:
+    post:
+      consumes:
+      - multipart/form-data
+      parameters:
+      - description: Body with file
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entity.FileEntity'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.response'
+      summary: Upload File
+      tags:
+      - Upload File
+swagger: "2.0"
